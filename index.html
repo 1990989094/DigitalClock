@@ -7,17 +7,32 @@
 </head>
 <body>
 <div id="time">
-    <div class="circle">
+    <div class="circle" style="--clr:red;">
+        <div class="dots hr_dot"></div>
+        <svg>
+            <circle cx="70" cy="70" r="70"></circle>
+            <circle cx="70" cy="70" r="70" id="hh"></circle>
+        </svg>
         <div id="hours">00</div>
     </div>
-    <div class="circle">
+    <div class="circle" style="--clr:blue;">
+        <div class="dots min_dot"></div>
+        <svg>
+            <circle cx="70" cy="70" r="70"></circle>
+            <circle cx="70" cy="70" r="70" id="mm"></circle>
+        </svg>
         <div id="minutes">00</div>
     </div>
-    <div class="circle">
-        <div id="seconds">00</div>
+    <div class="circle" style="--clr:green;">
+        <div class="dots second_dot"></div>
+        <svg>
+            <circle cx="70" cy="70" r="70"></circle>
+            <circle cx="70" cy="70" r="70" id="ss"></circle>
+        </svg>
+        <div id="seconds" >00</div>
     </div>
     <div class="ap">
-        <div id="ampm">AM</div>
+        <div  style="padding-left: 550px" id="ampm">AM</div>
     </div>
     <script>
         setInterval(() => {
@@ -25,6 +40,10 @@
             let minutes = document.getElementById('minutes');
             let seconds = document.getElementById('seconds');
             let ampa = document.getElementById('ampm');
+
+            let hh = document.getElementById('hh');
+            let mm = document.getElementById('mm');
+            let ss = document.getElementById('ss');
 
             // Get Current Timestamp
             let h = new Date().getHours();
@@ -37,7 +56,7 @@
             }
             //add zero before single digit number
             h = (h < 10) ? "0" + h : h;
-            m = (m < 10 )? "0" + h : h;
+            m = (m < 10 )? "0" + m : m;
             s = (s < 10) ? "0" + s: s;
 
             // Import
@@ -46,6 +65,9 @@
             seconds.innerHTML = s;
             ampa.innerHTML = am;
 
+            hh.style.strokeDashoffset = 440 - ( 440 * h) / 12 ;
+            mm.style.strokeDashoffset = 440 - ( 440 * m) / 60 ;
+            ss.style.strokeDashoffset = 440 - ( 440 * s) / 60 ;
         })
 
     </script>
