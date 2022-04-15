@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Digital Clock</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="time">
+    <div class="circle">
+        <div id="hours">00</div>
+    </div>
+    <div class="circle">
+        <div id="minutes">00</div>
+    </div>
+    <div class="circle">
+        <div id="seconds">00</div>
+    </div>
+    <div class="ap">
+        <div id="ampm">AM</div>
+    </div>
+    <script>
+        setInterval(() => {
+            let hours = document.getElementById('hours');
+            let minutes = document.getElementById('minutes');
+            let seconds = document.getElementById('seconds');
+            let ampa = document.getElementById('ampm');
+
+            // Get Current Timestamp
+            let h = new Date().getHours();
+            let m = new Date().getMinutes();
+            let s = new Date().getSeconds();
+            let am = h >= 12 ? "PM" : "AM";
+            // Convert 24 hour to 12 hour system
+            if(h > 12 ){
+                h = h - 12;
+            }
+            //add zero before single digit number
+            h = (h < 10) ? "0" + h : h;
+            m = (m < 10 )? "0" + h : h;
+            s = (s < 10) ? "0" + s: s;
+
+            // Import
+            hours.innerHTML = h;
+            minutes.innerHTML = m;
+            seconds.innerHTML = s;
+            ampa.innerHTML = am;
+
+        })
+
+    </script>
+</div>
+</body>
+</html>
